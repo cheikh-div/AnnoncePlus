@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 26 juin 2026 à 22:25
+-- Généré le : dim. 28 juin 2026 à 17:18
 -- Version du serveur : 8.4.7
 -- Version de PHP : 8.3.28
 
@@ -32,13 +32,13 @@ CREATE TABLE IF NOT EXISTS `annonces` (
   `id_annonce` int NOT NULL AUTO_INCREMENT,
   `id_utilisateur` int NOT NULL,
   `id_categorie` int NOT NULL,
-  `titre` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `prix` decimal(12,2) NOT NULL,
-  `localisation` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `etat` enum('Neuf','Occasion') COLLATE utf8mb4_unicode_ci DEFAULT 'Occasion',
-  `visibilite` enum('Publique','Privee') COLLATE utf8mb4_unicode_ci DEFAULT 'Publique',
-  `statut` enum('Active','Vendue','Suspendue') COLLATE utf8mb4_unicode_ci DEFAULT 'Active',
+  `localisation` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `etat` enum('Neuf','Occasion') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Occasion',
+  `visibilite` enum('Publique','Privee') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Publique',
+  `statut` enum('Active','Vendue','Suspendue') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Active',
   `date_publication` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_annonce`),
   KEY `id_utilisateur` (`id_utilisateur`),
@@ -56,9 +56,9 @@ CREATE TABLE IF NOT EXISTS `caracteristiques` (
   `id_caracteristique` int NOT NULL AUTO_INCREMENT,
   `id_annonce` int NOT NULL,
   `id_marque` int DEFAULT NULL,
-  `modele` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `modele` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `annee` int DEFAULT NULL,
-  `couleur` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `couleur` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kilometrage` int DEFAULT NULL,
   `superficie` decimal(10,2) DEFAULT NULL,
   `chambres` int DEFAULT NULL,
@@ -76,9 +76,9 @@ CREATE TABLE IF NOT EXISTS `caracteristiques` (
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id_categorie` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id_categorie`),
   UNIQUE KEY `nom` (`nom`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -127,7 +127,7 @@ DROP TABLE IF EXISTS `images`;
 CREATE TABLE IF NOT EXISTS `images` (
   `id_image` int NOT NULL AUTO_INCREMENT,
   `id_annonce` int NOT NULL,
-  `chemin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `chemin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `principale` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_image`),
   KEY `id_annonce` (`id_annonce`)
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `images` (
 DROP TABLE IF EXISTS `marques`;
 CREATE TABLE IF NOT EXISTS `marques` (
   `id_marque` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_marque`),
   UNIQUE KEY `nom` (`nom`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `id_message` int NOT NULL AUTO_INCREMENT,
   `id_conversation` int NOT NULL,
   `expediteur` int NOT NULL,
-  `contenu` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contenu` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_envoi` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `lu` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_message`),
@@ -176,8 +176,8 @@ DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id_notification` int NOT NULL AUTO_INCREMENT,
   `id_utilisateur` int NOT NULL,
-  `titre` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contenu` text COLLATE utf8mb4_unicode_ci,
+  `titre` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contenu` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `lue` tinyint(1) DEFAULT '0',
   `date_notification` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_notification`),
@@ -193,13 +193,13 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 DROP TABLE IF EXISTS `utilisateurs`;
 CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `id_utilisateur` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prenom` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `telephone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mot_de_passe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'default.png',
-  `role` enum('admin','utilisateur') COLLATE utf8mb4_unicode_ci DEFAULT 'utilisateur',
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'default.png',
+  `role` enum('admin','utilisateur') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'utilisateur',
   `date_inscription` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_utilisateur`),
   UNIQUE KEY `email` (`email`)
@@ -214,8 +214,8 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 DROP TABLE IF EXISTS `villes`;
 CREATE TABLE IF NOT EXISTS `villes` (
   `id_ville` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pays` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nom` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pays` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_ville`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 COMMIT;
