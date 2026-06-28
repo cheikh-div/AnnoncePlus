@@ -1,0 +1,408 @@
+/* ==========================================
+  RESET & BASE
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+}
+
+/* ==========================================
+  SIDEBAR
+========================================== */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 200;
+    transform: translateX(-260px);
+    transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-logo {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-logo h2 {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.sidebar nav {
+    flex: 1;
+    padding: 16px 0;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 24px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+}
+
+.sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    padding-left: 30px;
+    border-left: 3px solid #fff;
+}
+
+.sidebar ul li a.active {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    padding-left: 30px;
+    border-left: 4px solid #fff;
+    font-weight: 700;
+}
+
+.sidebar ul li a i {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar ul li.logout {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 8px;
+}
+
+.sidebar ul li.logout a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.sidebar ul li.logout a:hover {
+    background: rgba(231, 76, 60, 0.25);
+    color: #ff6b6b;
+    border-left-color: #ff6b6b;
+}
+
+/* ==========================================
+  OVERLAY
+========================================== */
+.overlay-sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 199;
+}
+
+.overlay-sidebar.open {
+    display: block;
+}
+
+/* ==========================================
+  HEADER
+========================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 198;
+}
+
+.hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+    color: #667eea;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s;
+}
+
+.hamburger:hover {
+    background: #f0f0f0;
+}
+
+/* ==========================================
+  MAIN LAYOUT
+========================================== */
+.main,
+.main-content {
+    margin-left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 56px;
+}
+
+.content {
+    padding: 32px 36px;
+    flex: 1;
+}
+
+.content h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #667eea;
+    display: inline-block;
+}
+
+/* ==========================================
+  CARDS
+========================================== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.card-body h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-body .prix {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.card-body p {
+    font-size: 0.85rem;
+    color: #777;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-body p i {
+    color: #667eea;
+    font-size: 0.8rem;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.btn {
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: opacity 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.fav {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1.5px solid #e0e0e0;
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.fav:hover {
+    color: #e74c3c;
+    border-color: #e74c3c;
+    background: #fff0f0;
+}
+
+/* ==========================================
+  NO RESULTS
+========================================== */
+.no-results {
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
+    padding: 60px 20px;
+    grid-column: 1 / -1;
+}
+
+/* ==========================================
+  FOOTER
+========================================== */
+.footer {
+    background: #fff;
+    padding: 20px 28px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer p {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+/* ==========================================
+  RESPONSIVE TABLET
+========================================== */
+@media (max-width: 768px) {
+
+    .content {
+        padding: 20px 16px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+/* ==========================================
+  RESPONSIVE MOBILE
+========================================== */
+@media (max-width: 480px) {
+
+    .content {
+        padding: 14px 10px;
+    }
+
+    .content h1 {
+        font-size: 1.4rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .card img {
+        height: 160px;
+    }
+
+    .publication-form,
+    .modifier-form,
+    .profil-droite,
+    .profil-gauche {
+        padding: 18px 12px;
+    }
+
+    .profil-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        padding: 16px;
+    }
+}
+
+.main,
+.main-content {
+    transition: margin-left 0.3s ease;
+}
+
+.main.pushed,
+.main-content.pushed {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+}
+
+@media (max-width: 768px) {
+
+    .main.pushed,
+    .main-content.pushed {
+        margin-left: 0;
+        width: 100%;
+    }
+}

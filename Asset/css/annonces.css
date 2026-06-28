@@ -1,0 +1,75 @@
+/* ===== TOGGLE ===== */
+.vue-toggle {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.btn-vue {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid #667eea;
+    color: #667eea;
+    transition: all 0.3s;
+}
+
+.btn-vue:hover,
+.btn-vue.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border-color: transparent;
+}
+
+/* ===== SEARCH FORM ===== */
+.search-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.search-form input[type="text"],
+.search-form select {
+    padding: 11px 16px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #333;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    flex: 1;
+    min-width: 180px;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.search-form button {
+    padding: 11px 22px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.3s, transform 0.2s;
+}
+
+.search-form button:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}

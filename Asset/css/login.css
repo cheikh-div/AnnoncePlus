@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f2f5;
+}
+
+.container {
+    display: flex;
+    width: 900px;
+    min-height: 540px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== LEFT SIDE ===== */
+.left {
+    flex: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    text-align: center;
+    color: #fff;
+    padding: 40px 30px;
+}
+
+.overlay h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.overlay p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.88;
+}
+
+/* ===== RIGHT SIDE ===== */
+.right {
+    flex: 1;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 40px;
+}
+
+.right form {
+    width: 100%;
+    max-width: 340px;
+}
+
+.right form h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 6px;
+}
+
+.right form>p {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+/* ===== INPUT BOX ===== */
+.input-box {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    background: #fafafa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-box:focus-within {
+    border-color: #667eea;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.input-box i {
+    color: #aaa;
+    margin-right: 12px;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.input-box:focus-within i {
+    color: #667eea;
+}
+
+.input-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.input-box input::placeholder {
+    color: #aaa;
+}
+
+/* ===== BUTTON ===== */
+button[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* ===== LINKS ===== */
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.links a {
+    color: #667eea;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 680px) {
+    .container {
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    .left {
+        padding: 40px 20px;
+        min-height: 200px;
+    }
+
+    .right {
+        padding: 40px 24px;
+    }
+}
